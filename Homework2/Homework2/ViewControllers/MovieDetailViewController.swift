@@ -12,17 +12,15 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var movieDescriptionLabel: UILabel!
     @IBOutlet weak var watchTrailerButton: UIButton!
     
-    var navBarTitle: String = ""
-    var movieDescription: String = ""
-    var movieTrailer: String = ""
+    var movieDetail: Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureNavigationBar(largeTitleColor: .white, backgoundColor: .systemRed, tintColor: .white, title: navBarTitle, preferredLargeTitle: false)
+        configureNavigationBar(largeTitleColor: .white, backgoundColor: .systemRed, tintColor: .white, title: movieDetail!.title, preferredLargeTitle: false)
         configureUI()
         
-        movieDescriptionLabel.text = movieDescription
+        movieDescriptionLabel.text = movieDetail?.description
     }
     
     /*
@@ -35,9 +33,8 @@ class MovieDetailViewController: UIViewController {
     @IBAction func didWatchTrailerTapped(_ sender: Any) {
         let st = UIStoryboard(name: "Main", bundle: nil)
         let vc = st.instantiateViewController(withIdentifier: Constants.webViewController) as! WebViewController
-        vc.movieTrailerLink = self.movieTrailer
+        vc.movieTrailerLink = self.movieDetail?.trailer
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
-        print("DEBUG: Watch trailer button clicked.")
     }
 }

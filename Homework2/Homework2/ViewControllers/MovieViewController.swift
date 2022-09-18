@@ -46,9 +46,7 @@ extension MovieViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let st = UIStoryboard(name: "Main", bundle: nil)
         let vc = st.instantiateViewController(withIdentifier: Constants.movieDetailViewController) as! MovieDetailViewController
-        vc.navBarTitle = movies[indexPath.row].title
-        vc.movieDescription = movies[indexPath.row].description
-        vc.movieTrailer = movies[indexPath.row].trailer
+        vc.movieDetail = movies[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

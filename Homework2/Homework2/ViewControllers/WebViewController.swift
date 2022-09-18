@@ -11,15 +11,16 @@ import WebKit
 class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
-    var movieTrailerLink: String = ""
+    var movieTrailerLink: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadWebView()
+        loadWebView(withTrailer: movieTrailerLink)
     }
     
-    private func loadWebView() {
-        if let url = URL.init(string: movieTrailerLink) {
+    private func loadWebView(withTrailer trailer: String?) {
+        guard let trailer = trailer else {return}
+        if let url = URL.init(string: trailer) {
             let urlRequest = URLRequest.init(url: url)
             webView.load(urlRequest)
         }
